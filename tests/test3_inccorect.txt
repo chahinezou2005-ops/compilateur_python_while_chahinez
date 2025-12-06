@@ -1,0 +1,6 @@
+chahinez = 20
+ @ = 5
+ age = 18 $
+ nom = "Chahinez
+ while age > 0
+ # commentaire ignoré
