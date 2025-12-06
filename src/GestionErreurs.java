@@ -1,32 +1,36 @@
-
 public class GestionErreurs {
-    private static int compteurErreurs = 0;
+    private static int nbLexicales = 0;
+    private static int nbSyntaxiques = 0;
 
-    // Pour les erreurs lexicales
     public static void lexicale(int ligne, int colonne, String message) {
         System.out.printf("ERREUR LEXICALE [L%02d:C%02d] : %s%n", ligne, colonne, message);
-        compteurErreurs++;
+        nbLexicales++;
     }
 
-
-    // Pour les erreurs syntaxiques
     public static void syntaxique(int ligne, int colonne, String message) {
-    System.out.printf("ERREUR SYNTAXIQUE [L%02d:C%02d] : %s%n", ligne, colonne, message);
-    compteurErreurs++;
-}
+        System.out.printf("ERREUR SYNTAXIQUE [L%02d:C%02d] : %s%n", ligne, colonne, message);
+        nbSyntaxiques++;
+    }
 
-    // Affiché à la fin
-    public static void bilan() {
-        if (compteurErreurs == 0) {
+    // Appelé à la fin de l’analyse lexicale
+    public static void bilanLexical() {
+        System.out.println(); // ligne vide
+        if (nbLexicales == 0) {
             System.out.println("Aucune erreur détectée");
         } else {
-            System.out.printf("%n=== %d erreur(s) détectée(s)  ===%n%n", compteurErreurs);
+            System.out.printf("=== %d erreur(s) lexicale(s) détectée(s) ===%n%n", nbLexicales);
         }
     }
-    // Afficher les nombres d'erreurs
-    public static int getNombreErreurs() {
-        return compteurErreurs;
+
+    // Appelé à la fin de l’analyse syntaxique
+    public static void bilanSyntaxique() {
+        if (nbSyntaxiques > 0) {
+            System.out.printf("=== %d erreur(s) syntaxique(s) détectée(s) ===%n", nbSyntaxiques);
+        }
     }
 
-    
+    public static void reset() {
+        nbLexicales = 0;
+        nbSyntaxiques = 0;
+    }
 }

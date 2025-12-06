@@ -27,6 +27,7 @@ public class Parser {
         } else {
             System.out.println("\nProgramme syntaxiquement incorrect");
         }
+        GestionErreurs.bilanSyntaxique();
     }
     // programme → instruction*
     private void programme() {
@@ -172,7 +173,7 @@ public class Parser {
         if (getCourant().type == TokenType.NOUVELLE_LIGNE) i++;
     }
 
-    // === Utilitaires ===
+   
     private Token getCourant() {
         if (i < tokens.size()) return tokens.get(i);
         return new Token(TokenType.FIN_FICHIER, "", -1, -1);

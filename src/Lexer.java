@@ -44,7 +44,7 @@ public class Lexer {
                 lireOperateurOuSeparateur();
             }
             else {
-                // ERREUR LEXICALE : caractère inconnu → on signale mais on continue !
+                // ERREUR LEXICALE : caractère inconnu ( on signale mais on continue )
                 GestionErreurs.lexicale(ligne, colonne, 
                     "Caractère interdit ou inconnu : '" + c + "'");
                 position++; 
@@ -103,9 +103,9 @@ public class Lexer {
             ajouter(TokenType.CHAINE, "\"" + contenu + "\"");
             position++; colonne++;
         } else {
-            // ERREUR : chaîne non fermée → on signale mais on continue
+            // erreur : chaîne non fermée ( on signale mais on continue )
             GestionErreurs.lexicale(ligneDebut, colonneDebut, "Chaîne non fermée");
-            ajouter(TokenType.CHAINE, "\"" + contenu); // on l'ajoute quand même
+            ajouter(TokenType.CHAINE, "\"" + contenu); 
         }
     }
 
@@ -144,13 +144,12 @@ public class Lexer {
         tokens.add(new Token(type, lexeme, ligne, col < 1 ? 1 : col));
     }
 
-public void afficher() {
-        System.out.println("\n=== ANALYSE LEXICALE – CHAHINEZ – ÉTAPE 3 ===\n");
+        public void afficher() {
 
         boolean fichierVide = true;
 
         for (Token token : this.tokens) {
-            // Si on rencontre autre chose que FIN_FICHIER avec valeur vide → fichier non vide
+            // Si on rencontre autre chose que FIN_FICHIER avec valeur vide ( fichier non vide)
             if (!(token.type == TokenType.FIN_FICHIER && token.lexeme.isEmpty())) {
                 fichierVide = false;
             }
@@ -161,7 +160,7 @@ public void afficher() {
             System.out.println("Aucun token détecté (fichier vide)");
         }
 
-        GestionErreurs.bilan();
+        GestionErreurs.bilanLexical();
     }
     public List<Token> getTokens() {
         return new ArrayList<>(tokens);
