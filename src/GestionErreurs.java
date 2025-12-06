@@ -8,7 +8,12 @@ public class GestionErreurs {
         compteurErreurs++;
     }
 
-    
+
+    // Pour les erreurs syntaxiques
+    public static void syntaxique(int ligne, int colonne, String message) {
+    System.out.printf("ERREUR SYNTAXIQUE [L%02d:C%02d] : %s%n", ligne, colonne, message);
+    compteurErreurs++;
+}
 
     // Affiché à la fin
     public static void bilan() {
@@ -18,8 +23,10 @@ public class GestionErreurs {
             System.out.printf("%n=== %d erreur(s) détectée(s)  ===%n%n", compteurErreurs);
         }
     }
-
+    // Afficher les nombres d'erreurs
     public static int getNombreErreurs() {
         return compteurErreurs;
     }
+
+    
 }

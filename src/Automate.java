@@ -61,8 +61,8 @@ public static boolean estNombre(String mot) {
     // 3. CHAÎNE DE CARACTÈRES  
 
 private static final int[][] MAT_CHAINE = {
-    {1, -1, -1},    // état 0 : " → 1
-    {2, -1, 1},     // état 1 : " → 2 (acceptant), \n → erreur, autre → reste 1
+    {1, -1, -1},    // état 0 :  → 1
+    {2, -1, 1},     // état 1 :  → 2 (acceptant), \n → erreur, autre → reste 1
     {-1, -1, -1}     // état 2 : état acceptant final
 };
 
@@ -92,9 +92,9 @@ public static boolean estChaine(String mot) {
 
     return c == '#' && ec == 2 && i == s.length() - 1;
 }   
-    //  5. MOT-CLÉ + CHAHINEZ
+    //  5. MOT-CLÉ + oughlissi chahines
     private static final String[] MOTS_CLES = {
-        "while","if","else","for","def","print","return","True","False","None","and","or","not","pass","chahinez","oughlissi"
+        "while","if","else","for","in","def","print","return","True","False","None","and","or","not","pass","chahinez","oughlissi","OUGHLISSI","CHAHINEZ"
     };
 
     public static boolean estMotCle(String mot) {

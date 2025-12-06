@@ -22,7 +22,11 @@ public class Lexer {
                 position++; colonne++;
             }
             else if (c == '\n') {
-                ligne++; colonne = 1; position++;
+                 ajouter(TokenType.NOUVELLE_LIGNE, "\\n");
+                ligne++; 
+               colonne = 1; 
+               position++;
+              
             }
             else if (c == '#') {
                 ignorerCommentaire();
@@ -140,14 +144,25 @@ public class Lexer {
         tokens.add(new Token(type, lexeme, ligne, col < 1 ? 1 : col));
     }
 
-    public void afficher() {
+public void afficher() {
         System.out.println("\n=== ANALYSE LEXICALE – CHAHINEZ – ÉTAPE 3 ===\n");
-        for (Token t : tokens) {
-            System.out.println(t);
-        }
-        GestionErreurs.bilan(); //  Pour Affiche le nombre total d'erreurs
-    }
 
+        boolean fichierVide = true;
+
+        for (Token token : this.tokens) {
+            // Si on rencontre autre chose que FIN_FICHIER avec valeur vide → fichier non vide
+            if (!(token.type == TokenType.FIN_FICHIER && token.lexeme.isEmpty())) {
+                fichierVide = false;
+            }
+            System.out.println(token);
+        }
+
+        if (fichierVide) {
+            System.out.println("Aucun token détecté (fichier vide)");
+        }
+
+        GestionErreurs.bilan();
+    }
     public List<Token> getTokens() {
         return new ArrayList<>(tokens);
     }
