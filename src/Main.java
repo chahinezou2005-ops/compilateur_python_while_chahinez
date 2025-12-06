@@ -1,7 +1,7 @@
 public class Main {
     public static void main(String[] args) {
         String code = """
-            x=1; while x<4 x=x+1; pass
+            
             """;
 
 
