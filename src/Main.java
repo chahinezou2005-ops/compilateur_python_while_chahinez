@@ -8,7 +8,9 @@ public class Main {
         String fichier = sc.nextLine().trim();
 
         try {
-            // LE DOSSIER tests/ EST À CÔTÉ DU .jar → ÇA MARCHE DIRECT
+           
+
+
             String code = Files.readString(Paths.get("tests", fichier));
 
             System.out.println("\n=== ANALYSE LEXICALE ===\n");
