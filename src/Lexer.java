@@ -27,6 +27,8 @@ public class Lexer {
                colonne = 1; 
                position++;
               
+            }else if (c == '\r') {   // <--- Ajouter cette ligne
+        position++; 
             }
             else if (c == '#') {
                 ignorerCommentaire();

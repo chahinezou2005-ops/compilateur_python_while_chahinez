@@ -14,6 +14,7 @@ bloc_simple         → (affectation | pass)+
 condition           → expression
 expression          → tout jusqu’à (variables , operateur ..)':' ou NOUVELLE_LIGNE
 instruction_ignorée → ("if"|"for"|"def"|"class"|"print"|"return"|"break"|"continue").*   ← toute la ligne est ignorée
+VARIABLE → [a-zA-Z_] [a-zA-Z0-9_]* NOMBRE → ("-")? [0-9]+ ("." [0-9]+)?
 
 
 ## Analyseur lexical (Lexer.java + Automate.java)
@@ -69,9 +70,11 @@ COMPILATEUR_PYTHON_WHILE_CHAHINEZ/
 - test5_myname.txt → utilise chahinez comme variable → Erreur (mot-clé interdit)(reconaitre lexicalement comme mot clé)
 - test_vide.txt → fichier vide → Message spécial "Fichier vide – rien à analyser"
 
-### Exécution
+### Exécution du compilateur
 ```bash
+(tu doit etre sur /bin)
 java -jar MiniCompilateur.jar
+puis tu inser un des cas du test 
 
 
 ### Résumé de la classe Automate (à donner à la prof)
