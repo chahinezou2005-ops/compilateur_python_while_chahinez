@@ -31,7 +31,7 @@ public class Lexer {
             else if (c == '#') {
                 ignorerCommentaire();
             }
-            else if (c == '"') {
+            else if (c == '\'') {
                 lireChaine();
             }
             else if (Character.isLetter(c) || c == '_') {
@@ -93,19 +93,19 @@ public class Lexer {
         int colonneDebut = colonne;
         char c = source.charAt(position);
 
-        while (c != '"' && c != '\n' && c != '#') {
+        while (c != '\'' && c != '\n' && c != '#') {
             position++; colonne++;
             c = source.charAt(position);
         }
 
         String contenu = source.substring(debut, position);
-        if (c == '"') {
-            ajouter(TokenType.CHAINE, "\"" + contenu + "\"");
+        if (c == '\'') {
+            ajouter(TokenType.CHAINE, "'" + contenu + "'");
             position++; colonne++;
         } else {
             // erreur : chaîne non fermée ( on signale mais on continue )
             GestionErreurs.lexicale(ligneDebut, colonneDebut, "Chaîne non fermée");
-            ajouter(TokenType.CHAINE, "\"" + contenu); 
+            ajouter(TokenType.CHAINE, "'" + contenu); 
         }
     }
 

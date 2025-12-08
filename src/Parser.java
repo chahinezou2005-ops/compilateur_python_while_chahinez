@@ -29,7 +29,7 @@ public class Parser {
         }
         GestionErreurs.bilanSyntaxique();
     }
-    // programme → instruction*
+    // programme → instruction+
     private void programme() {
         while (getCourant().type != TokenType.FIN_FICHIER) {
             instruction();

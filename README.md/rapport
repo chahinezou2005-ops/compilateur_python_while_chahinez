@@ -1,0 +1,90 @@
+# Mini-Compilateur Python – Boucle while – Chahinez OUGHLISSI- Groupe B3
+
+**Langage choisi** : Python simplifié  
+**Structure de contrôle principale** : `while` (avec `else` optionnel)  
+**Mots-clés personnalisés** : `chahinez`, `oughlissi`,`OUGHLISSI`,`CHAHINEZ`
+
+## Grammaire simplifiée
+
+programme           → instruction+
+instruction         → affectation | boucle_while | pass | NOUVELLE_LIGNE | instruction_ignorée
+affectation         → IDENTIFIANT "=" expression
+boucle_while        → "while" condition ":" bloc_simple ("else" ":" bloc_simple)?
+bloc_simple         → (affectation | pass)+
+condition           → expression
+expression          → tout jusqu’à (variables , operateur ..)':' ou NOUVELLE_LIGNE
+instruction_ignorée → ("if"|"for"|"def"|"class"|"print"|"return"|"break"|"continue").*   ← toute la ligne est ignorée
+
+
+## Analyseur lexical (Lexer.java + Automate.java)
+
+- Parcourt le code caractère par caractère
+- Reconnaît les mots-clés via `Automate.estMotCle()`
+- Gère les nombres, chaînes, opérateurs, commentaires `#`
+- Ajoute un token `NOUVELLE_LIGNE` à chaque `\n` pour gérer l’indentation
+- Détecte les erreurs lexicales (caractères interdits, chaîne non fermée)
+
+
+
+## Analyseur syntaxique (Parser.java)
+
+- Descente récursive
+- Accepte : affectations, `while`, `while...else`, `pass`
+- Ignore totalement : `for`, `if`, `def`, `print`, `return`, `in`, etc.
+- Gère l’indentation via le token `NOUVELLE_LIGNE`
+
+## Gestion des erreurs
+
+- Erreurs lexicales et syntaxiques affichées avec ligne/colonne
+- Ne s’arrête jamais à la première erreur
+- Bilan final avec nombre d’erreurs
+
+## Structure du projet
+
+
+COMPILATEUR_PYTHON_WHILE_CHAHINEZ/
+├── MiniCompilateur.jar          
+├── README.md                    
+├── src/
+│   ├── Main.java
+│   ├── Lexer.java
+│   ├── Parser.java
+│   ├── Token.java
+│   ├── TokenType.java
+│   ├── Automate.java
+│   └── GestionErreurs.java
+└── tests/
+├── test1_correct.txt
+├── test2_for.txt
+├── test3_incorrect.txt
+├── test5_myname.txt
+└── test_vide.txt
+
+
+## Cas de test (dossier tests/)
+
+- test1_correct.txt → while normal + affectation + pass → Programme syntaxiquement correct
+- test2_for.txt → contient un for → for ignoré  syntaxiquement → correct
+- test3_incorrect.txt → while sans ':' → Erreur syntaxique détectée + des erreurs lexical
+- test5_myname.txt → utilise chahinez comme variable → Erreur (mot-clé interdit)(reconaitre lexicalement comme mot clé)
+- test_vide.txt → fichier vide → Message spécial "Fichier vide – rien à analyser"
+
+### Exécution
+```bash
+java -jar MiniCompilateur.jar
+
+
+### Résumé de la classe Automate (à donner à la prof)
+
+La classe **Automate** contient toutes les fonctions qui permettent de reconnaître les différents tokens du langage.
+
+- **Identifiants** : reconnus par un automate à 3 états (lettre ou _ au début, puis lettres/chiffres/_). Refuse le mot "Chahinez" (constante littérale).
+
+- **Nombres** : accepte les entiers (ex: 123) et les décimaux (ex: 12.34) grâce à un automate qui gère le point décimal.
+
+- **Chaînes de caractères** : vérifie qu’elles commencent et finissent par " et qu’elles ne contiennent pas de saut de ligne.
+
+- **Mots-clés** : liste complète des mots réservés ("while", "if", "else", "pass", "True", "False", "and", "or", etc.) + les constantes spéciales "chahinez", "oughlissi".
+
+- **Opérateurs et séparateurs** : fonctions simples pour reconnaître =, ==, !=, >, >=, <, <=, :, (, ), etc.
+

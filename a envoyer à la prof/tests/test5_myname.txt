@@ -1,0 +1,5 @@
+age = 25
+ while age > 0
+ age = age - 1
+ CHAHINEZ = True
+ pass
