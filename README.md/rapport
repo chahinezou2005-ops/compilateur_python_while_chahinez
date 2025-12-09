@@ -44,8 +44,13 @@ VARIABLE → [a-zA-Z_] [a-zA-Z0-9_]* NOMBRE → ("-")? [0-9]+ ("." [0-9]+)?
 
 
 COMPILATEUR_PYTHON_WHILE_CHAHINEZ/
-├── MiniCompilateur.jar          
-├── README.md                    
+├── bin/
+│   └── MiniCompilateur.jar  
+|    ├── tests
+|           
+├── README.md 
+|       └── Rapport  
+|
 ├── src/
 │   ├── Main.java
 │   ├── Lexer.java
