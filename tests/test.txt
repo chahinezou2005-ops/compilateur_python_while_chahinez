@@ -1,0 +1,8 @@
+age = 25
+ while age > 5 :
+ age = age - 1
+ CHAHINEZ = True
+ print('hhhhhhhh')
+ # commentaire ignoré
+ for i in range(10)
+ pass
